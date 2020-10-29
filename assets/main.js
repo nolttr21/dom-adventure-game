@@ -271,7 +271,7 @@ start();
 const game = document.querySelector("#game");
 const startingPage = document.querySelector("#starting-page");
 const startingRoom = document.querySelector("#starting-room");
-const octopusRoom = document.querySelector("#opctopus-room");
+const octopusRoom = document.querySelector("#octopus-room");
 const zombieRoom = document.querySelector("#zombie-room");
 const guessRoom = document.querySelector("#guess-room");
 const lionRoom = document.querySelector("#lion-room");
@@ -293,18 +293,39 @@ zombieButton.addEventListener("click", event => {
   startingRoom.style.display = "none";
   zombieRoom.style.display = "block";
 });
+const octopusButton = startingRoom.querySelector("button:last-of-type");
+octopusButton.addEventListener("click", event=> {
+  startingRoom.style.display = "none";
+  octopusRoom.style.display = "block";
+})
 
 const leadButton = zombieRoom.querySelector("button:first-of-type");
 leadButton.addEventListener("click", event => {
   zombieRoom.style.display = "none";
   guessRoom.style.display = "block";
 });
+const fightButton = zombieRoom.querySelector("button:last-of-type");
+fightButton.addEventListener("click", event => {
+  zombieRoom.style.display = "none";
+  guessRoom.style.display = "block";
+})
 
 const guessTextBox = guessRoom.querySelector("input");
+let tries = 3;
+let rand = Math.floor(Math.random() * Math.floor(9) + 1);
+console.log(rand);
 guessTextBox.addEventListener("keypress", event => {
   if(event.key == "Enter") {
-    guessRoom.style.display = "none";
-    lionRoom.style.display = "block";
+    if (guessTextBox.value == rand) {
+      guessRoom.style.display = "none";
+      lionRoom.style.display = "block";
+    } else if (tries > 1) {
+      tries--;
+      document.querySelector(".tries").textContent = tries;
+    } else {
+      guessRoom.style.display = "none";
+    }
+    guessTextBox.value = "";
   }
 });
 
@@ -313,19 +334,37 @@ lionButton.addEventListener("click", event => {
   lionRoom.style.display = "none";
   zachRoom.style.display = "block";
 });
+const snakeButton = lionRoom.querySelector("button:last-of-type");
+snakeButton.addEventListener("click", event => {
+  lionRoom.style.display = "none";
+  zachRoom.style.display = "block";
+})
 
 const zachTextBox = zachRoom.querySelector("input");
 zachTextBox.addEventListener("keypress", event => {
   if (event.key == "Enter") {
-    zachRoom.style.display = "none";
-    goldRoom.style.display = "block";
+    const guess = zachTextBox.value.padStart(4, 0);
+    if (guess === "0111") {
+      zachRoom.style.display = "none";
+      goldRoom.style.display = "block";
+    } else {
+      zachRoom.style.display = "none";
+      goldRoom.style.display = "block";
+    }
+    zachTextBox.value = "";
   }
 });
 
 const goldTextBox = goldRoom.querySelector("input");
 goldTextBox.addEventListener("keypress", event => {
   if (event.key == "Enter") {
-    goldRoom.style.display = "none";
-    finalScene.style.display = "block";
+    if (goldTextBox.value <= 15) {
+      goldRoom.style.display = "none";
+      finalScene.style.display = "block";
+    } else {
+      goldRoom.style.display = "none";
+      startingRoom.style.display = "block";
+    }
+    goldTextBox.value = "";
   }
 });
