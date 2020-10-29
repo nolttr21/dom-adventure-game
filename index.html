@@ -10,13 +10,162 @@
   </head>
   <body>
     <main id="game">
-      <!-- 
-        You have two options:
-        1. Write HTML within this <main> element and manipulate it in the JS
-        2. Or handle everything within the JS
-      -->
-    </main>
+      <div id="starting-page">
+        <form>
+          <label for="nickname">
+            Enter Your Name Here
+          </label>
+          <input type="text" placeholder="nickname" id="nickname" name="nickname">
+        </form>
 
+        <button type="submit" form="nickname">
+          Start
+        </button>
+      </div>
+
+      <div id="starting-room">
+        <p>
+          You wake up in a dimly lit room
+        </p>
+        <p>
+          There are two doors
+        </p>
+        <p>
+          Do you pick:
+        </p>
+
+        <button id="start-one">
+          Door one
+        </button>
+        <button id="start-two">
+          Door two
+        </button>
+      </div>
+
+      <div id="octopus-room">
+        <p>
+          You open the door
+        </p>
+        <p>
+          You see giant tenticles reaching out to grab you!
+        </p>
+        <p>
+          The giant octopus pulls you into the toxic liquid
+        </p>
+      </div>
+
+      <div id="zombie-room">
+        <p>
+          There is another door in this room guarded by zombies
+        </p>
+        <p>
+          Do you:
+        </p>
+
+        <button id="zombie-one">
+          lead them away from the door
+        </button>
+        <button id="zombie-two">
+          fight them
+        </button>
+      </div>
+
+      <div id="guess-room">
+        <p>
+          There is room with a door that is locked, and requires a code
+        </p>
+        <p>
+          It says: "Hello, <span class="name"></span>"
+        </p>
+        <p>
+          "Guess a number between 1 and ten. You have <span class="tries"></span> tries"
+        </p>
+
+        <input type="number" id="num-guess">
+      </div>
+
+      <div id="lion-room">
+        <p>
+          There are two doors:
+        </p>
+        <p>
+          Behind the first one is a lion that hasn't eaten in months
+        </p>
+        <p>
+          Behind the second one is a venomous snake
+        </p>
+        <p>
+          Do you pick:
+        </p>
+
+        <button id="lion-one">
+          Door one
+        </button>
+        <button id="lion-two">
+          Door two
+        </button>
+      </div>
+
+      <div id="zach-room">
+        <p>
+          A wild Zach Fedor appears!
+        </p>
+        <p>
+          He says: "Hello <span class="name"></span>. Convert the number 7 to binary."
+        </p>
+
+        <input type="text" id="binary-answer">
+      </div>
+
+      <div id="landmine-room">
+        <p>
+          This room is full of land mines
+        </p>
+        <p>
+          You can use a helicopter or hovercraft to cross
+        </p>
+        <p>
+          Do you use:
+        </p>
+
+        <button id="landmine-one">
+          helicopter
+        </button>
+        <button id="landmine-two">
+          hovercraft
+        </button>
+      </div>
+
+      <div id="gold-room">
+        <p>
+          You enter a room filled with gold bars!
+        </p>
+        <p>
+          How many will you take? (Hint: don't take more than you can handle.
+        </p>
+
+        <input type="number" id="gold-num">
+      </div>
+
+      <div id="final-scene">
+        <p>
+          You are very hungry.
+        </p>
+        <p>
+          The cost of food is one gold bar.
+        </p>
+        <p>
+          Will you:
+        </p>
+
+        <button id="final-one">
+          buy food
+        </button>
+        <button id="final-two">
+          keep going
+        </button>
+      </div>
+    </main>
     <script src="assets/main.js"></script>
   </body>
 </html>

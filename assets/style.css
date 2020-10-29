@@ -21,3 +21,14 @@ main {
   font-size: 2rem;
 }
 
+#starting-room,
+#octopus-room,
+#zombie-room,
+#guess-room,
+#lion-room,
+#zach-room,
+#landmine-room,
+#gold-room,
+#final-scene {
+  display: none;
+}
