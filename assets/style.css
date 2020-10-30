@@ -1,5 +1,5 @@
 *, *:after, *:before {
-  box-sizing: border-box;
+
 }
 
 html {
@@ -11,13 +11,13 @@ body {
   background: #343434;
   color: #fefefe;
   display: flex;
+  flex-direction: column;
   font-family: Helvetica, Arial, sans-serif;
   justify-content: center;
   line-height: 140%;
   min-height: 100vh;
 }
 
-main {
+h1 {
   font-size: 2rem;
 }
-
