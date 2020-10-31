@@ -2,8 +2,20 @@
 
 }
 
+li {
+  list-style: none;
+}
+
 html {
   font-size: 1.2em;
+}
+
+button {
+  margin: 5px;
+}
+
+form {
+  margin-left: 40%;
 }
 
 body {

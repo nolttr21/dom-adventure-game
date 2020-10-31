@@ -9,9 +9,82 @@ console.log(correctDoor);//for testing
 document.querySelector('#game').textContent = 'The game will begin in 5 seconds';
 
 
+const finalRoom = function(){
+
+  var describe = document.querySelector(".roomDescription");
+  describe.textContent = "There was a bomb at the top of that path, which you ignited with your fire flower, blowing up the wall and revealing the final room. Congratulations! You've made it to the final room. The room contains 100 coins. You currently have 27 coins. How many coins will you collect? Keep in mind that not choosing the correct number will not kill you.";
+
+  var form = document.createElement("form");
+  var input = document.createElement("input");
+  var submit = document.createElement("input");
+
+  input.type = "number";
+  input.value = "0";
+  submit.type = "submit";
+
+
+  form.appendChild(input);
+  form.appendChild(submit);
+  describe.appendChild(form);
+
+  submit.addEventListener("click",() =>{
+
+    if (input.value == 42)
+    {
+      describe.textContent = "nice, you chose correctly. Your total coin count is now 69 - style points achieved! There was a pipe at the end of the room that takes you to the ax. Congratulations, you beat the level. Nice work!!!";
+    }
+    else {
+      describe.textContent = "That wasn't the correct number of coins but it's fine, you just missed out on some style points. There was a pipe at the end of the room that takes you to the ax. Congratulations, you beat the level. Nice work!!!";
+    }
+    describe.removeChild(form);
+
+    event.preventDefault();
+  });
+
+}
+
+//finalRoom();
+
 
 const powerupChoice = function(){
-  console.log("almost!");
+  var describe = document.querySelector(".roomDescription");
+  describe.textContent = "The next room leaves you with(once again) another choice. To progress through the room you must travel upward, however you must choose to take, or not to take, a powerup with you. There is a very enticing fire flower to your right. Once you travel upwards, you can't come back down because of the one way gates. There could be something that requires a fire flower at the top, or there could be a one tile gap that requires you to be small(not have a powerup)";
+
+  var buttons = document.querySelector(".buttons");
+
+  var button1 = document.createElement("button");
+  var button2 = document.createElement("button");
+
+  button1.textContent = "Take powerup";
+  button2.textContent = "leave powerup";
+
+  buttons.appendChild(button1);
+  buttons.appendChild(button2);
+
+  button1.addEventListener("click",() => {
+    //remove all the text and buttons from this room, and go to the next room
+  describe.textContent = "";
+
+  buttons.removeChild(button1);
+  buttons.removeChild(button2);
+
+
+
+    return finalRoom();
+  });
+
+    button2.addEventListener("click",() => {
+      //remove all the text and buttons from this room, and go to the next room
+    describe.textContent = "";
+
+    buttons.removeChild(button1);
+    buttons.removeChild(button2);
+
+
+    return death("There was a bomb at the top of the path, requiring a fireflower to ignite it to blow up a path to the next section");
+    });
+
+
 }
 
 const pickAPath = function(){
@@ -25,8 +98,8 @@ const pickAPath = function(){
   var option3 = document.createElement('li');
 
   option1.textContent = "1)Top path";
-  option2.textContent = "2)Bottom path";
-  option3.textContent = "3)Middle path";
+  option2.textContent = "2)Middle path";
+  option3.textContent = "3)Bottom path";
 
   choices.appendChild(option1);
   choices.appendChild(option2);
@@ -49,52 +122,50 @@ const pickAPath = function(){
 
   button1.addEventListener("click",() => {
     //remove all the text and buttons from this room, and go to the next room
-    describe.textContent = "";
-    choices.removeChild(option1);
-    choices.removeChild(option2);
-    choices.removeChild(option3);
-    buttons.removeChild(button1);
-    buttons.removeChild(button2);
-    buttons.removeChild(button3);
+  describe.textContent = "";
+  choices.removeChild(option1);
+  choices.removeChild(option2);
+  choices.removeChild(option3);
+  buttons.removeChild(button1);
+  buttons.removeChild(button2);
+  buttons.removeChild(button3);
 
 
-    return death("The path leads to a dead end, you take a death to one of the plants");
-    });
+  return death("The path leads to a dead end, you take a death to one of the plants");
+  });
 
-    button2.addEventListener("click",() => {
+  button2.addEventListener("click",() => {
       //remove all the text and buttons from this room, and go to the next room
-      describe.textContent = "";
-      choices.removeChild(option1);
-      choices.removeChild(option2);
-      choices.removeChild(option3);
-      buttons.removeChild(button1);
-      buttons.removeChild(button2);
-      buttons.removeChild(button3);
-      console.log("clicked!");
+  describe.textContent = "";
+  choices.removeChild(option1);
+  choices.removeChild(option2);
+  choices.removeChild(option3);
+  buttons.removeChild(button1);
+  buttons.removeChild(button2);
+  buttons.removeChild(button3);
+  console.log("clicked!");
 
 
-      return death("The path ends with a row of spikes!");
-      });
+  return death("The path ends with a row of spikes!");
+  });
 
-      button3.addEventListener("click",() => {
+  button3.addEventListener("click",() => {
         //remove all the text and buttons from this room, and go to the next room
-        describe.textContent = "";
-        choices.removeChild(option1);
-        choices.removeChild(option2);
-        choices.removeChild(option3);
-        buttons.removeChild(button1);
-        buttons.removeChild(button2);
-        buttons.removeChild(button3);
+  describe.textContent = "";
+  choices.removeChild(option1);
+  choices.removeChild(option2);
+  choices.removeChild(option3);
+  buttons.removeChild(button1);
+  buttons.removeChild(button2);
+  buttons.removeChild(button3);
 
-
-        return powerupChoice();
-        });
-
-
-
+  return powerupChoice();
+  });
 }
 
 const getCheckpoint = function(){
+  gotCheckpoint = true;
+
   var describe = document.querySelector(".roomDescription");
   describe.textContent = "The next room has four doors leading to it, probably the four from the last room. Choosing the correct door awards you with a checkpoint, which is what you did! Congratulations, you got a checkpoint! Doesn't help out too much if you run out of lives though...";
 
@@ -104,11 +175,11 @@ const getCheckpoint = function(){
   buttons.appendChild(button1);
 
   button1.addEventListener("click",() => {
-    //remove all the text and buttons from this room, and go to the next room
-    describe.textContent = "";
-    buttons.removeChild(button1);
-    return pickAPath();
-    });
+  //remove all the text and buttons from this room, and go to the next room
+  describe.textContent = "";
+  buttons.removeChild(button1);
+  return pickAPath();
+  });
 
 
 };
@@ -123,11 +194,11 @@ const dontGetCheckpoint = function(){
   buttons.appendChild(button1);
 
   button1.addEventListener("click",() => {
-    //remove all the text and buttons from this room, and go to the next room
-    describe.textContent = "";
-    buttons.removeChild(button1);
-    return pickAPath();
-    });
+  //remove all the text and buttons from this room, and go to the next room
+  describe.textContent = "";
+  buttons.removeChild(button1);
+  return pickAPath();
+  });
 };
 
 
@@ -153,6 +224,23 @@ const pickADoor = function(){
   buttons.appendChild(button4);
 
   button1.addEventListener("click",() => {
+  //remove all the text and buttons from this room, and go to the next room
+  describe.textContent = "";
+  buttons.removeChild(button1);
+  buttons.removeChild(button2);
+  buttons.removeChild(button3);
+  buttons.removeChild(button4);
+
+  if (correctDoor == 1)
+  {
+    return getCheckpoint();
+  }
+  else {
+    return dontGetCheckpoint();
+  }
+  });
+
+  button2.addEventListener("click",() => {
     //remove all the text and buttons from this room, and go to the next room
     describe.textContent = "";
 
@@ -161,7 +249,7 @@ const pickADoor = function(){
     buttons.removeChild(button3);
     buttons.removeChild(button4);
 
-    if (correctDoor == 1)
+    if (correctDoor == 2)
     {
       return getCheckpoint();
     }
@@ -171,7 +259,26 @@ const pickADoor = function(){
 
     });
 
-    button2.addEventListener("click",() => {
+    button3.addEventListener("click",() => {
+    //remove all the text and buttons from this room, and go to the next room
+    describe.textContent = "";
+
+    buttons.removeChild(button1);
+    buttons.removeChild(button2);
+    buttons.removeChild(button3);
+    buttons.removeChild(button4);
+
+    if (correctDoor == 3)
+    {
+      return getCheckpoint();
+    }
+    else {
+      return dontGetCheckpoint();
+    }
+
+    });
+
+    button4.addEventListener("click",() => {
       //remove all the text and buttons from this room, and go to the next room
       describe.textContent = "";
 
@@ -180,7 +287,7 @@ const pickADoor = function(){
       buttons.removeChild(button3);
       buttons.removeChild(button4);
 
-      if (correctDoor == 2)
+      if (correctDoor == 4)
       {
         return getCheckpoint();
       }
@@ -189,45 +296,6 @@ const pickADoor = function(){
       }
 
       });
-
-      button3.addEventListener("click",() => {
-        //remove all the text and buttons from this room, and go to the next room
-        describe.textContent = "";
-
-        buttons.removeChild(button1);
-        buttons.removeChild(button2);
-        buttons.removeChild(button3);
-        buttons.removeChild(button4);
-
-        if (correctDoor == 3)
-        {
-          return getCheckpoint();
-        }
-        else {
-          return dontGetCheckpoint();
-        }
-
-        });
-
-        button4.addEventListener("click",() => {
-          //remove all the text and buttons from this room, and go to the next room
-          describe.textContent = "";
-
-          buttons.removeChild(button1);
-          buttons.removeChild(button2);
-          buttons.removeChild(button3);
-          buttons.removeChild(button4);
-
-          if (correctDoor == 4)
-          {
-            return getCheckpoint();
-          }
-          else {
-            return dontGetCheckpoint();
-          }
-
-          });
-
 };
 
 
@@ -259,6 +327,20 @@ const thwompRoom = function(){
   buttons.appendChild(button2);
 
   button1.addEventListener("click",() => {
+  //remove all the text and buttons from this room, and go to the next room
+  describe.textContent = "";
+  choices.removeChild(option1);
+  choices.removeChild(option2);
+
+  buttons.removeChild(button1);
+  buttons.removeChild(button2);
+
+
+
+  return death("You throw the POW block at the munchers, but that triggers something off screen and a crap-ton of ghoombas fall on you head");
+  });
+
+  button2.addEventListener("click",() => {
     //remove all the text and buttons from this room, and go to the next room
     describe.textContent = "";
     choices.removeChild(option1);
@@ -267,30 +349,8 @@ const thwompRoom = function(){
     buttons.removeChild(button1);
     buttons.removeChild(button2);
 
-
-
-    return death("You throw the POW block at the munchers, but that triggers something off screen and a crap-ton of ghoombas fall on you head");
+    return pickADoor();
     });
-
-    button2.addEventListener("click",() => {
-      //remove all the text and buttons from this room, and go to the next room
-      describe.textContent = "";
-      choices.removeChild(option1);
-      choices.removeChild(option2);
-
-      buttons.removeChild(button1);
-      buttons.removeChild(button2);
-
-
-
-      return pickADoor();
-      });
-
-
-
-
-
-
 };
 
 const returnFromDeath = function(){
@@ -331,6 +391,33 @@ const returnFromDeath = function(){
   buttons.appendChild(button3);
 
   button1.addEventListener("click",() => {
+  //remove all the text and buttons from this room, and go to the next room
+  describe.textContent = "";
+  choices.removeChild(option1);
+  choices.removeChild(option2);
+  choices.removeChild(option3);
+  buttons.removeChild(button1);
+  buttons.removeChild(button2);
+  buttons.removeChild(button3);
+
+
+  return lavaTrap();
+  });
+
+  button2.addEventListener("click",() => {
+  //remove all the text and buttons from this room, and go to the next room
+  describe.textContent = "";
+  choices.removeChild(option1);
+  choices.removeChild(option2);
+  choices.removeChild(option3);
+  buttons.removeChild(button1);
+  buttons.removeChild(button2);
+  buttons.removeChild(button3);
+
+  return thwompRoom();
+  });
+
+  button3.addEventListener("click",() => {
     //remove all the text and buttons from this room, and go to the next room
     describe.textContent = "";
     choices.removeChild(option1);
@@ -341,44 +428,26 @@ const returnFromDeath = function(){
     buttons.removeChild(button3);
 
 
-    return lavaTrap();
+    return death("You can't bring yourself to do it, it's a no skip run lol. In your indecisiveness you let the timer run out and you lose one of your lives");
     });
-
-    button2.addEventListener("click",() => {
-      //remove all the text and buttons from this room, and go to the next room
-      describe.textContent = "";
-      choices.removeChild(option1);
-      choices.removeChild(option2);
-      choices.removeChild(option3);
-      buttons.removeChild(button1);
-      buttons.removeChild(button2);
-      buttons.removeChild(button3);
-      console.log("clicked!");
-
-
-      return thwompRoom();
-      });
-
-      button3.addEventListener("click",() => {
-        //remove all the text and buttons from this room, and go to the next room
-        describe.textContent = "";
-        choices.removeChild(option1);
-        choices.removeChild(option2);
-        choices.removeChild(option3);
-        buttons.removeChild(button1);
-        buttons.removeChild(button2);
-        buttons.removeChild(button3);
-
-
-        return death("You can't bring yourself to do it, it's a no skip run lol. In your indecisiveness you let the timer run out and you lose one of your lives");
-        });
-
 }
 
-//TODO
+
 const gameOver = function(){
   var describe = document.querySelector(".roomDescription");
   describe.textContent = "Looks like YOU are out of lives, how unfortunate";
+
+  var buttons = document.querySelector(".buttons");
+  var button1 = document.createElement("button");
+  button1.textContent = "continue";
+  buttons.appendChild(button1);
+
+  button1.addEventListener("click",() => {
+  //remove all the text and buttons from this room, and go to the next room
+  describe.textContent = "";
+  buttons.removeChild(button1);
+  return start();
+  });
 };
 
 const death = function(cause){
@@ -388,18 +457,7 @@ const death = function(cause){
     return gameOver();
   }
   var describe = document.querySelector(".roomDescription");
-  describe.textContent = cause + ". You only have " + lives + " lives left! The game will continue in 10 seconds";
-
-  var retry = function(){
-    describe.textContent = "";
-    return returnFromDeath();
-  };
-  setTimeout(retry,10000);
-};
-
-const lavaTrap = function(){
-  var describe = document.querySelector(".roomDescription");
-  describe.textContent = "The door spawns you on top a a pit of lava, with no floor beneath you. This is the pinnacle of level design";
+  describe.textContent = cause + ". You only have " + lives + " lives left!";
 
   var buttons = document.querySelector(".buttons");
   var button1 = document.createElement("button");
@@ -410,12 +468,24 @@ const lavaTrap = function(){
     //remove all the text and buttons from this room, and go to the next room
     describe.textContent = "";
     buttons.removeChild(button1);
-    return death("lol");
+    if (gotCheckpoint)
+    {
+      return pickAPath();
+    }
+    else {
+      return returnFromDeath();
+    }
     });
 };
 
-const start = function(){
+const lavaTrap = function(){
+  var describe = document.querySelector(".roomDescription");
+  return death("The door spawns you on top a a pit of lava, with no floor beneath you. This is the pinnacle of level design");
+};
 
+const start = function(){
+  gotCheckpoint = false;
+  lives = 5;
 
   document.querySelector('#game').textContent = null;
   var describe = document.querySelector(".roomDescription");
@@ -453,6 +523,20 @@ const start = function(){
   buttons.appendChild(button3);
 
   button1.addEventListener("click",() => {
+  //remove all the text and buttons from this room, and go to the next room
+  describe.textContent = "";
+  choices.removeChild(option1);
+  choices.removeChild(option2);
+  choices.removeChild(option3);
+  buttons.removeChild(button1);
+  buttons.removeChild(button2);
+  buttons.removeChild(button3);
+
+
+  return lavaTrap();
+  });
+
+  button2.addEventListener("click",() => {
     //remove all the text and buttons from this room, and go to the next room
     describe.textContent = "";
     choices.removeChild(option1);
@@ -463,37 +547,23 @@ const start = function(){
     buttons.removeChild(button3);
 
 
-    return lavaTrap();
+
+    return thwompRoom();
     });
 
-    button2.addEventListener("click",() => {
-      //remove all the text and buttons from this room, and go to the next room
-      describe.textContent = "";
-      choices.removeChild(option1);
-      choices.removeChild(option2);
-      choices.removeChild(option3);
-      buttons.removeChild(button1);
-      buttons.removeChild(button2);
-      buttons.removeChild(button3);
-      console.log("clicked!");
+  button3.addEventListener("click",() => {
+    //remove all the text and buttons from this room, and go to the next room
+    describe.textContent = "";
+    choices.removeChild(option1);
+    choices.removeChild(option2);
+    choices.removeChild(option3);
+    buttons.removeChild(button1);
+    buttons.removeChild(button2);
+    buttons.removeChild(button3);
 
 
-      return thwompRoom();
+    return death("You can't bring yourself to do it, it's a no skip run lol. In your indecisiveness you let the timer run out and you lose one of your lives");
       });
-
-      button3.addEventListener("click",() => {
-        //remove all the text and buttons from this room, and go to the next room
-        describe.textContent = "";
-        choices.removeChild(option1);
-        choices.removeChild(option2);
-        choices.removeChild(option3);
-        buttons.removeChild(button1);
-        buttons.removeChild(button2);
-        buttons.removeChild(button3);
-
-
-        return death("You can't bring yourself to do it, it's a no skip run lol. In your indecisiveness you let the timer run out and you lose one of your lives");
-        });
 
   console.log("hang on, were gaming!");
 };
