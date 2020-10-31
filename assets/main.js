@@ -569,7 +569,7 @@ const start = function(){
 };
 
 
-setTimeout(start ,500);
+setTimeout(start ,5000);
 
 
 
