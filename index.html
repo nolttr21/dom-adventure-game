@@ -10,6 +10,7 @@
   </head>
   <body>
     <main id="game">
+      <div id="health"></div>
       <div id="starting-page">
         <form>
           <label for="nickname">
@@ -52,6 +53,10 @@
         <p>
           The giant octopus pulls you into the toxic liquid
         </p>
+
+        <button>
+          Continue
+        </button>
       </div>
 
       <div id="zombie-room">
@@ -78,7 +83,7 @@
           It says: "Hello, <span class="name"></span>"
         </p>
         <p>
-          "Guess a number between 1 and ten. You have <span class="tries">3</span> tries"
+          "Guess a number between 1 and ten. You have <span class="tries"></span> tries"
         </p>
 
         <input type="number" id="num-guess" name="num-guess">
@@ -163,6 +168,32 @@
         </button>
         <button id="final-two">
           keep going
+        </button>
+      </div>
+
+      <div id="victory">
+        <p>
+          Good job, you won!
+        </p>
+
+        <button id="play-again">
+          Play Again
+        </button>
+      </div>
+
+      <div id="death">
+        <p id="deathMessage"></p>
+
+        <button id="try-again">
+          Try Again
+        </button>
+      </div>
+
+      <div id="dialog">
+        <p></p>
+
+        <button>
+          continue
         </button>
       </div>
     </main>

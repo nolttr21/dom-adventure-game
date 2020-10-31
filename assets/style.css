@@ -21,6 +21,16 @@ main {
   font-size: 2rem;
 }
 
+#health {
+  position: fixed;
+  top: 25px;
+  left: 5vw;
+}
+
+#death {
+  color: red;
+}
+
 #starting-room,
 #octopus-room,
 #zombie-room,
@@ -29,6 +39,9 @@ main {
 #zach-room,
 #landmine-room,
 #gold-room,
-#final-scene {
+#final-scene,
+#victory,
+#death,
+#dialog {
   display: none;
 }
