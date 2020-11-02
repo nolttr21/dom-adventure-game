@@ -565,7 +565,7 @@ const start = function(){
     return death("You can't bring yourself to do it, it's a no skip run lol. In your indecisiveness you let the timer run out and you lose one of your lives");
       });
 
-  console.log("hang on, were gaming!");
+  //console.log("hang on, were gaming!");
 };
 
 
