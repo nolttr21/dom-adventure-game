@@ -17,6 +17,7 @@ const dialog = document.querySelector("#dialog");
 //This function runs in between rooms
 const displayDialog = function (message, next) {
   //Show dialog
+  var later = next;
   dialog.style.display = "block"
   const para = dialog.querySelector("p");
   const button = dialog.querySelector("button");
@@ -29,7 +30,8 @@ const displayDialog = function (message, next) {
     landmineRoom.style.display = "none";
     lionRoom.style.display = "none";
     //Run the function for the next room
-    switch (next) {
+    console.log(later);
+    switch (later) {
       case "startingRoom":
         start();
         break;
@@ -275,11 +277,12 @@ const displayZombieRoom = function() {
   fightButton.addEventListener("click", event => {
     //If they choose to fight them, subtract three from health
     health -= 3;
+    console.log("win");
     //If health is more than zero, go to guessRoom
     if (health > 0) {
       showHealthMessage(health);
       zombieRoom.style.display = "none";
-      displayDialog("You were injured, but you fought them off!", displayGuessRoom);
+      displayDialog("You were injured, but you fought them off!", "guessRoom");
     //If health is less than one, call death function
     } else {
       showHealthMessage(0);
