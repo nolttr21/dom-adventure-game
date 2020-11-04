@@ -279,7 +279,7 @@ const displayZombieRoom = function() {
     if (health > 0) {
       showHealthMessage(health);
       zombieRoom.style.display = "none";
-      displayDialog("You were injured, but you fought them off!", displayGuessRoom);
+      displayDialog("You were injured, but you fought them off!", "guessRoom");
     //If health is less than one, call death function
     } else {
       showHealthMessage(0);
