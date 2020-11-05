@@ -238,6 +238,9 @@ const displayGuessRoom = function() {
   let tries = 3;
   //Cheating
   console.log(rand);
+
+  document.querySelector(".tries").textContent = tries;
+
   const guessTextBox = guessRoom.querySelector("input");
   guessTextBox.addEventListener("keypress", event => {
     if(event.key == "Enter") {
@@ -247,6 +250,7 @@ const displayGuessRoom = function() {
         displayDialog("Congratulations, you've guessed correctly!", "goldRoom");
       } else if (tries > 1) {
         tries--;
+
         document.querySelector(".tries").textContent = tries;
       } else {
         //If they run out of guesses, subtract one from health
@@ -275,9 +279,9 @@ const displayZombieRoom = function() {
   zombieRoom.style.display = "block";
   const fightButton = zombieRoom.querySelector("button:last-of-type");
   fightButton.addEventListener("click", event => {
-    //If they choose to fight them, subtract three from health
+    //If they choose to fight them, remove 3 health
     health -= 3;
-    console.log("win");
+
     //If health is more than zero, go to guessRoom
     if (health > 0) {
       showHealthMessage(health);
